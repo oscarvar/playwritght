@@ -169,3 +169,36 @@ test('should do bear authentication', async ({ request }) => {
      expect(await bearerResponse.text()).toBe('Hello automation, you have accessed a protected endpoint!')
 
 })
+
+
+
+test('create create a new pet -public',{tag:'@produ'}, async ({ request }) => {
+
+    const createPetResponse = await request.post('https://petstore.swagger.io/v2/pet',{
+          data: {
+               "id": 0,
+               "category": {
+                 "id": 0,
+                 "name": "string"
+               },
+               "name": "doggie",
+               "photoUrls": [
+                 "string"
+               ],
+               "tags": [
+                 {
+                   "id": 0,
+                   "name": "string"
+                 }
+               ],
+               "status": "available"
+             }
+     })
+
+     expect(createPetResponse.status()).toBe(200)
+     const createPetResponseJson =await createPetResponse.json()
+     expect (createPetResponseJson.id).toBeTruthy()
+
+})
+
+
